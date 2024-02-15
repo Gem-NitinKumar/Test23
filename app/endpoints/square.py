@@ -3,6 +3,7 @@ from app.code import square
 def get(request_object):
     num = int(request_object)
     request_object = {
+        "method" : "GET",
         "header": {},
         "query_string": { "num": num, "pow": 2},
         "payload": {}

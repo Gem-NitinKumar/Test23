@@ -1,21 +1,26 @@
 from flask import Blueprint, render_template,request
+from app.endpoints.square import get 
 
-bluprint_bp = Blueprint('blueprint', __name__)
+blueprint_bp = Blueprint('blueprint', __name__)
 
-@bluprint_bp.route('/')
+@blueprint_bp.route('/')
 def index():
+    # method
+    # path
+    # headers
+    # query_parameters
+    # payload
     return render_template('index.html')
 
-@bluprint_bp.route('/hey')
+@blueprint_bp.route('/hey')
 def hey():
     say_good_deed = "congratulation be brave"
     return render_template("index.html")
 
-@bluprint_bp.route('/square', methods=['GET','POST'])
+@blueprint_bp.route('/square', methods=['GET','POST'])
 def square():
     if request.method == 'POST':
         n = int(request.form['square'])
-        n = n*n
-        req = str(n)
-        return req
+        result = get(n)
+        return {'result' : result}
     return render_template("square.html")
